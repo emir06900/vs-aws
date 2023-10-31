@@ -4,7 +4,7 @@ resource "aws_launch_configuration" "images_lc" {
 
   instance_type               = "t2.micro"                    # Adjust instance type
    # Create this security group
-  key_name                    = "new-jenkins"               # Change to your key pair
+  key_name                    = "new-jenkins.pem"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
               #!/bin/bash
@@ -20,7 +20,7 @@ resource "aws_launch_configuration" "videos_lc" {
   instance_type               = "t2.micro"                    # Adjust instance type
   image_id                    = "ami-035c22a887ed22046"  # Specify the desired AMI
  # Create this security group
-  key_name                    = "new-jenkins"               # Change to your key pair
+  key_name                    = "new-jenkins.pem"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
               #!/bin/bash
