@@ -33,7 +33,6 @@ pipeline {
         stage ("terraform apply") {
             steps {
                 sh 'terraform apply --auto-approve'
-                IF %ERRORLEVEL% EQU 1 (exit /B 0) ELSE (exit /B 1)'''
             }
         }
     }
