@@ -2,7 +2,7 @@ resource "aws_security_group" "my_security_group" {
   name        = "my-security-group"
   description = "My custom security group"
 
-  vpc_id = vpc-08ec0f75739787a06  # Replace with your VPC ID
+  vpc_id = aws_vpc.my_vpc.id  # Replace with your VPC ID
 
   # Inbound rules
   ingress {
