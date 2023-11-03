@@ -6,13 +6,7 @@ resource "aws_launch_configuration" "images_lc" {
    # Create this security group
   key_name                    = "new-jenkins"               # Change to your key pair
   associate_public_ip_address = true
-  user_data                   = <<-EOF
-              #!/bin/bash
-              sudo amazon-linux-extras install epel -y
-              sudo yum install stress -y
-              stress --cpu 2 --timeout 30000
-              yum install -y htop
-              EOF
+  
 }
 
 resource "aws_launch_configuration" "videos_lc" {
@@ -22,13 +16,7 @@ resource "aws_launch_configuration" "videos_lc" {
  # Create this security group
   key_name                    = "new-jenkins"               # Change to your key pair
   associate_public_ip_address = true
-  user_data                   = <<-EOF
-              #!/bin/bash
-              sudo amazon-linux-extras install epel -y
-              sudo yum install stress -y
-              stress --cpu 2 --timeout 30000
-              yum install -y htop
-              EOF
+  
 }
 
 resource "aws_autoscaling_group" "images_asg" {
