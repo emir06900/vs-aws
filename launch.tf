@@ -2,7 +2,7 @@ resource "aws_launch_configuration" "images_lc" {
   name_prefix                 = "images-"
   image_id                    = "ami-035c22a887ed22046"  # Specify the desired AMI
   instance_type               = "t2.micro"                    # Adjust instance type
-   # Create this security group
+  security_groups = [aws_security_group.my_security_group.id] # Create this security group
   key_name                    = "new-jenkins"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
@@ -18,7 +18,7 @@ resource "aws_launch_configuration" "videos_lc" {
   name_prefix                 = "videos-"
   instance_type               = "t2.micro"                    # Adjust instance type
   image_id                    = "ami-035c22a887ed22046"  # Specify the desired AMI
- # Create this security group
+  security_groups = [aws_security_group.my_security_group.id] # Create this security group
   key_name                    = "new-jenkins"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
