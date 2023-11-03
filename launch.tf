@@ -1,8 +1,37 @@
+resource "aws_security_group" "my_security_group" {
+  name        = "my-security-group"
+  description = "My custom security group"
+
+  vpc_id = vpc-08ec0f75739787a06  # Replace with your VPC ID
+
+  # Inbound rules
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow SSH from anywhere
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["146.115.160.144/32"]  # Allow HTTP from anywhere
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["146.115.160.144/32"]  # Allow custom TCP (port 8080) from anywhere
+  }
+}
+
 resource "aws_launch_configuration" "images_lc" {
   name_prefix                 = "images-"
   image_id                    = "ami-035c22a887ed22046"  # Specify the desired AMI
   instance_type               = "t2.micro"                    # Adjust instance type
-  security_groups = [sg-06b471fc100e1b416] # Create this security group
+  security_groups = [aws_security_group.my_security_group.id] # Create this security group
   key_name                    = "new-jenkins"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
@@ -18,7 +47,7 @@ resource "aws_launch_configuration" "videos_lc" {
   name_prefix                 = "videos-"
   instance_type               = "t2.micro"                    # Adjust instance type
   image_id                    = "ami-035c22a887ed22046"  # Specify the desired AMI
-  security_groups = [sg-06b471fc100e1b416] # Create this security group
+  security_groups = [aws_security_group.my_security_group.id]     # Create this security group
   key_name                    = "new-jenkins"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
