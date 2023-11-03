@@ -35,6 +35,12 @@ resource "aws_lb_listener_rule" "video" {
       content      = "Videos"
     }
   }
+  condition {
+    path_pattern {
+      values = ["/video/*"]
+    }
+  }
+}
 
 # Create two Target Groups
 resource "aws_lb_target_group" "images_tg" {
