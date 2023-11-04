@@ -16,14 +16,14 @@ resource "aws_security_group" "my_security_group" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["146.115.160.144/32"]  # Allow HTTP from anywhere
+    cidr_blocks = ["108.28.47.38/32"]  # Allow HTTP from anywhere
   }
 
   ingress {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = ["146.115.160.144/32"]  # Allow custom TCP (port 8080) from anywhere
+    cidr_blocks = ["108.28.47.38/32"]  # Allow custom TCP (port 8080) from anywhere
   }
 }
 
