@@ -49,7 +49,7 @@ resource "aws_lb_listener_rule" "videos_rule" {
   listener_arn = aws_lb_listener.http_listener.arn
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.videos_target_group.arn
+    target_group_arn = aws_lb_target_group.videos_tg.arn
   }
   condition {
     path_pattern {
