@@ -36,7 +36,7 @@ resource "aws_lb_listener_rule" "images_rule" {
   listener_arn = aws_lb_listener.http_listener.arn
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.images_target_group.arn
+    target_group_arn = aws_lb_target_group.images_tg.arn
   }
   condition {
     path_pattern {
