@@ -46,7 +46,7 @@ resource "aws_launch_configuration" "images_lc" {
 resource "aws_launch_configuration" "videos_lc" {
   name_prefix                 = "videos-"
   instance_type               = "t2.micro"                    # Adjust instance type
-  image_id                    = "aami-0e8a34246278c21e4"  # Specify the desired AMI
+  image_id                    = "ami-0e8a34246278c21e4"  # Specify the desired AMI
   security_groups = [aws_security_group.my_security_group.id]     # Create this security group
   key_name                    = "projectt"               # Change to your key pair
   associate_public_ip_address = true
