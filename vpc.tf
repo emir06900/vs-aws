@@ -1,5 +1,5 @@
 resource "aws_vpc" "my_vpc" {
-  cidr_block           = "0.0.0.0/24" # Adjust the CIDR block as needed
+  cidr_block           = "10.0.0.0/16" # Adjust the CIDR block as needed
   enable_dns_support   = true
   enable_dns_hostnames = true
 
