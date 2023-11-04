@@ -29,6 +29,11 @@ resource "aws_lb_listener" "http_listener" {
 
   default_action {
     type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      status_code  = "200"
+      content      = "OK"
+    }
   }
 }
 
