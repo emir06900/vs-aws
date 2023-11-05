@@ -67,7 +67,7 @@ resource "aws_autoscaling_group" "images_asg" {
   min_size                  = 2
   max_size                  = 5
   desired_capacity          = 2
-  health_check_type         = "ELB"
+  health_check_type         = "EC2"
   health_check_grace_period = 300
   tag {
     key                 = "Name"
@@ -84,7 +84,7 @@ resource "aws_autoscaling_group" "videos_asg" {
   min_size                  = 2
   max_size                  = 5
   desired_capacity          = 2
-  health_check_type         = "ELB"
+  health_check_type         = "EC2"
   health_check_grace_period = 300
   tag {
     key                 = "Name"
