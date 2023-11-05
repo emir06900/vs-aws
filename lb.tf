@@ -3,6 +3,7 @@ resource "aws_lb" "my_alb" {
   name               = "my-application-load-balancer"
   internal           = false # Set to true if internal ALB is needed
   load_balancer_type = "application"
+  security_groups    = [aws_security_group.my_security_group.id]
   subnets            = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
 }
 
