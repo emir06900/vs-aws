@@ -35,7 +35,8 @@ resource "aws_launch_configuration" "images_lc" {
   key_name                    = "projectt"               # Change to your key pair
   associate_public_ip_address = true
   user_data                   = <<-EOF
-              
+              #!/bin/bash
+              aws s3 cp s3://emirhan-yayman/Graysndaa.png /var/www/html/videos/
 EOF
 }
 
