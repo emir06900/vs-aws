@@ -36,11 +36,18 @@ resource "aws_launch_configuration" "images_lc" {
   associate_public_ip_address = true
   user_data                   = <<-EOF
               #!/bin/bash
-              sudo amazon-linux-extras install epel -y
-              sudo yum install stress -y
-              stress --cpu 2 --timeout 30000
-              yum install -y htop
-              EOF
+yum update -y
+amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+yum install -y httpd mariadb-server
+systemctl start httpd
+systemctl enable httpd
+usermod -a -G apache ec2-user
+chown -R ec2-user:apache /var/www
+chmod 2775 /var/www
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
+echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+EOF
 }
 
 resource "aws_launch_configuration" "videos_lc" {
@@ -52,10 +59,17 @@ resource "aws_launch_configuration" "videos_lc" {
   associate_public_ip_address = true
   user_data                   = <<-EOF
               #!/bin/bash
-              sudo amazon-linux-extras install epel -y
-              sudo yum install stress -y
-              stress --cpu 2 --timeout 30000
-              yum install -y htop
+yum update -y
+amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+yum install -y httpd mariadb-server
+systemctl start httpd
+systemctl enable httpd
+usermod -a -G apache ec2-user
+chown -R ec2-user:apache /var/www
+chmod 2775 /var/www
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
+echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
               EOF
 }
 
