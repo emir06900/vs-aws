@@ -36,7 +36,11 @@ resource "aws_launch_configuration" "images_lc" {
   associate_public_ip_address = true
   user_data                   = <<-EOF
               #!/bin/bash
-              aws s3 cp s3://emirhan-yayman/Graysndaa.png /var/www/html/videos/
+              yum update -y
+    yum install -y nginx
+    systemctl start nginx
+    systemctl enable nginx
+aws s3 cp s3://emirhan-yayman/Graysndaa.png /usr/share/nginx/html/images --recursive
 EOF
 }
 
